@@ -1,0 +1,12 @@
+# Runtime parameters.
+# Moved out of the legacy agent.yaml `agent.config` block —
+# AgentRegistry loads this file separately and passes it as Graph(config=...).
+
+governance_checks:
+  injection_check: true
+  pii_leakage_check: true
+  meti_ai_guidelines_check: true
+  fsa_model_risk_check: true
+  hallucination_pattern_check: true
+fail_threshold: "HIGH"
+report_format: "markdown"

@@ -1,0 +1,54 @@
+# config/injection_patterns.yaml
+# Curated injection pattern library for CMN-C1-074.
+# Each entry: {id, pattern (regex), severity, description}
+
+patterns:
+  - id: INJ-001
+    pattern: "ignore\\s+(all\\s+)?previous\\s+instructions?"
+    severity: CRITICAL
+    description: "Classic ignore-previous-instructions injection"
+
+  - id: INJ-002
+    pattern: "disregard\\s+(all\\s+)?previous"
+    severity: CRITICAL
+    description: "Disregard previous instructions variant"
+
+  - id: INJ-003
+    pattern: "you\\s+are\\s+now\\s+a"
+    severity: HIGH
+    description: "Persona override — you are now a [different agent]"
+
+  - id: INJ-004
+    pattern: "act\\s+as\\s+(?:a\\s+)?(?:different|new|unrestricted|jailbroken)"
+    severity: HIGH
+    description: "Role-play override — act as unrestricted agent"
+
+  - id: INJ-005
+    pattern: "DAN\\s*(mode|prompt|jailbreak)?"
+    severity: CRITICAL
+    description: "Do Anything Now (DAN) jailbreak variant"
+
+  - id: INJ-006
+    pattern: "pretend\\s+(you\\s+)?(are|have no|don.t have)\\s+(a\\s+)?(restrictions?|limits?|guidelines?)"
+    severity: HIGH
+    description: "Restriction bypass via pretend framing"
+
+  - id: INJ-007
+    pattern: "<\\s*/?\\s*(?:system|user|assistant)\\s*>"
+    severity: HIGH
+    description: "Fake role tag injection (XML-style)"
+
+  - id: INJ-008
+    pattern: "###\\s*(?:instruction|system|prompt|override)"
+    severity: HIGH
+    description: "Markdown heading injection to override system instructions"
+
+  - id: INJ-009
+    pattern: "\\[\\[\\s*(?:SYSTEM|INSTRUCTION|OVERRIDE)\\s*\\]\\]"
+    severity: HIGH
+    description: "Bracket-enclosed system override"
+
+  - id: INJ-010
+    pattern: "for\\s+educational\\s+purposes\\s+only.*(?:how|explain|describe).*(?:bypass|circumvent|jailbreak)"
+    severity: MEDIUM
+    description: "Educational framing to elicit unsafe content"

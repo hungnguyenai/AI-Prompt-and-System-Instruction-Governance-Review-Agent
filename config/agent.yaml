@@ -1,0 +1,28 @@
+# Agent Manifest — AgentRegistry entry point
+# AgentRegistry (mediator/registry/agent_registry.py) reads every key below at
+# ROOT level — do NOT nest keys under an `agent:` block.
+id: "CMN-C1-074"
+name: "AI Prompt & System Instruction Governance Review Agent"
+namespace: "cmn-c1-074"
+version: "0.1.0"
+enabled: true
+category: "Cat 1"
+# Static generation contract. Absent declarations default to deterministic.
+generation_mode: "deterministic"  # deterministic | llm
+industry: "CMN"
+
+base_type: "ChatAgent"  # VectorRAGAgent | RAGAgent | ChatAgent | ReActAgent | DocGenerationAgent
+
+# Entry point — single dotted import path (module.Class), NOT split module:/class:.
+class: "src.graph.graph.PromptGovernanceReviewAgent"
+
+# Security — governance review over internal system prompts
+required_trust_level: "INTERNAL"
+
+requires:
+  extras: []          # inline pattern baseline; no LLM client required
+  secrets: []         # no external credentials
+
+# Runtime parameters (governance_checks, fail_threshold, report_format) live in
+# config/config.yaml — AgentRegistry loads that file separately and passes it
+# as Graph(config=...). Do NOT put them here.
